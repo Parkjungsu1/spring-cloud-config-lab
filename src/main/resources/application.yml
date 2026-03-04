@@ -1,10 +1,26 @@
+server:
+  port: 8888
+
 spring:
+  application:
+    name: cloudconfig
+
   cloud:
     config:
       server:
         git:
           uri: https://github.com/Parkjungsu1/config-repo
-          default-label: main
+          username: ${GIT_USERNAME}
+          password: ${GIT_TOKEN}
 
-server:
-  port: 8888
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: busrefresh,health
